@@ -1,0 +1,32 @@
+#include <iostream>
+#include<memory>
+using namespace std;
+class shared
+{
+    int a;
+  public: shared(int a)
+   {
+       this->a=a;
+       cout<<"constructed"<<endl;
+   }
+   ~shared()
+{
+    cout<<"destructed"<<endl;
+}
+void display()
+{
+    cout<<a<<endl;
+}
+};
+int main() 
+{
+          shared_ptr<shared>ptr(new shared(12));
+          ptr->display();
+          cout<<ptr.get()<<endl;
+        shared_ptr<shared>ptr1;
+          ptr1=ptr;
+         ptr1->display();
+         cout<<ptr1.get()<<endl;
+         cout<<ptr.get()<<endl;
+         ptr->display();
+}

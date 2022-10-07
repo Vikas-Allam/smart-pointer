@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+class A
+{
+    int a;
+  public: A(int a)
+   {
+       this->a=a;
+       cout<<"constructed"<<endl;
+   }
+   ~A()
+{
+    cout<<"destructed"<<endl;
+}
+void display()
+{
+    cout<<a<<endl;
+}
+};
+int main() 
+{
+          A *ptr=new A(12);
+          ptr->display();
+          delete ptr;
+}

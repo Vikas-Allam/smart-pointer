@@ -1,0 +1,31 @@
+#include <iostream>
+#include<memory>
+using namespace std;
+class unique
+{
+    int a;
+  public: unique(int a)
+   {
+       this->a=a;
+       cout<<"constructed"<<endl;
+   }
+   ~unique()
+{
+    cout<<"destructed"<<endl;
+}
+void display()
+{
+    cout<<a<<endl;
+}
+};
+int main() 
+{
+          unique_ptr<unique>ptr(new unique(12));
+          ptr->display();
+          cout<<ptr.get()<<endl;
+        unique_ptr<unique>ptr1;
+          ptr1=move(ptr);
+         ptr1->display();
+         cout<<ptr1.get()<<endl;
+         cout<<ptr.get()<<endl;
+}
