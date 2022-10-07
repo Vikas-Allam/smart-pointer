@@ -1,0 +1,42 @@
+#include <iostream>
+#include<memory>
+using namespace std;
+class weak
+{
+    int a;
+    weak_ptr<weak>data;
+public:
+       weak(int a)
+       {
+           this->a=a;
+           cout<<"constructed"<<endl;
+       }
+       ~weak()
+       {
+           cout<<"destructed"<<endl;
+       }
+       void pointto(shared_ptr<weak>ptr)
+       {
+             data=ptr;
+       }
+       void print()
+       {
+           if(!data.expired())
+       {
+
+               cout<<data.lock()->a<<endl;
+           }
+       }
+};
+
+int main()
+{
+   shared_ptr<weak>ptr(new weak(12));
+   shared_ptr<weak>ptr1(new weak(13));
+
+   ptr->pointto(ptr1);
+   ptr1->pointto(ptr);
+  ptr->print();
+   ptr1->print();
+}
+
